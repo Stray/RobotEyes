@@ -1,4 +1,4 @@
-## RobotEyes can help you end-to-end test your app
+## RobotEyes can help you end-to-end test your AS3 app
 
 Inspired by a hybrid of WindowLicker (for Java) and Drew Bourne's Mockolate (for AS3).
 
@@ -6,15 +6,17 @@ RobotEyes should really be called RobotEyes and RobotFingers. It's called RobotE
 
 The aim is to deliver end-to-end testing to AS3 applications.
 
-Currently I'm only adding functionality as I actually need to use it, so feel free to fork and expand.
+Currently I'm only adding functionality as I actually need to make use of it, so feel free to fork and expand.
+
+Functionality included in this version has been tested by incorporation in an end-to-end test of an application. It may well do unexpected things.
 
 ## What's an end-to-end test?
 
-In TDD speak (Test Driven Development), and end-to-end test is one that proves that your application carries out one of your user stories successfully.
+In TDD speak (Test Driven Development), an end-to-end test is one that proves that your application carries out one of your user stories successfully.
 
-A good example would be that, given a certain viable user/password combination, when the login button is clicked the login procedure completes and whatever application state change is required occurs. Or - that given a blank username, clicking doesn't submit the details to the login service. Or - that given a crappy user/password combination, the login fails and the application handles this gracefully, with user feedback.
+A good example would be that, given a certain viable user/password combination, when the login button is clicked the login procedure completes and whatever application state change is required occurs. Or - that given a blank username, clicking doesn't submit the details to the login service. Or - that given a crappy user/password combination, the login fails and the application handles this gracefully, with user feedback... you get the idea.
 
-End-to-End testing is different from Unit Testing and is additional to it - not a replacement for it. It aims to provide certainty that your actual application works, not just your individual classes, and eventually it'll usually include coverage of the backend services as well.
+End-to-end testing is different from Unit Testing and is additional to it - not a replacement for it. It aims to provide certainty that your actual application works, not just your individual classes, and, in doing so, it'll usually include coverage of any backend services as well.
 
 ## How do I use RobotEyes?
 
@@ -115,3 +117,10 @@ In an end-to-end test you'll probably need to test some stuff asynchronously, an
 			assertTrue('LoginPanel is off screen', (loginScreen.y < (-loginScreen.height)));
 		}
     
+## What if I ask for something that doesn't exist?
+
+RobotEyes returns currently returns null whenever it can't find something. This will almost certainly then cause your test to throw a null pointer error. I'm planning to add a more helpful error along the lines of 'RobotEyes can't find a WidgetView inside the SpiffingSectionView'.
+
+## Get in touch
+
+Fork, message me on git or email dailystraying@gmail.com. I'm @stray_and_ruby on twitter.
