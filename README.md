@@ -31,8 +31,10 @@ If your test requires a TextField nested within a certain view you can grab a dr
 The TextFieldDriver provides some useful functions:
 
 	textDriver.enterText('User A');
+	
+... this sets the text, but also fires the TextEvent.TEXT_INPUT event before, and the Event.CHANGE event after, just as if a real people type person had edited it.
 
-you can use the TextFieldDriver.checkText('Blah') function in a test:
+Then you can also use the TextFieldDriver.checkText('Blah') function in a test:
 	
 	assertTrue('TextField starts blank', (textDriver.(checkText(''))));
 
@@ -46,6 +48,14 @@ you can use the TextFieldDriver.checkText('Blah') function in a test:
 
 This will dispatch a MouseEvent.CLICK from the button / sprite / whatever you specified.
 
+List of helpers for the InteractiveObjectDriver:
+	click();
+	mouseOver();
+	mouseOut();
+	mouseDown();
+	mouseUp();
+	rollOver();
+	rollOut();
 
 ### Get a general view and check something about it:
 

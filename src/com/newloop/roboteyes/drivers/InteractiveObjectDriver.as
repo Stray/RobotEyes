@@ -56,6 +56,30 @@ package com.newloop.roboteyes.drivers {
 		public function click():void{
 			_item.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
+		
+		public function mouseOver():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_OVER));
+		}
+		
+		public function mouseOut():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_OUT));
+		}
+		
+		public function mouseDown():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_DOWN));
+		}
+		
+		public function mouseUp():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.MOUSE_UP));
+		}
+		
+		public function rollOver():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.ROLL_OVER));
+		}
+		
+		public function rollOut():void{
+			_item.dispatchEvent(new MouseEvent(MouseEvent.ROLL_OUT));
+		}
 
 		//--------------------------------------
 		//  EVENT HANDLERS
