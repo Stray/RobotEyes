@@ -36,22 +36,25 @@ you can use the TextFieldDriver.checkText('Blah') function in a test:
 	
 	assertTrue('TextField starts blank', (textDriver.(checkText(''))));
 
+
 ## You can also:
 
-Get an interactive object and click it:
+# Get an interactive object (in this case by specifying a property) and click it:
 
 	var buttonDriver:InteractiveObjectDriver = inViewOf(MainView).inViewOf(SubView).getA(Sprite).withProperty('name', 'btn_login');
 	buttonDriver.click();
 
 This will dispatch a MouseEvent.CLICK from the button / sprite / whatever you specified.
 
-Get a general view and check something about it:
+
+# Get a general view and check something about it:
 
 	var loginScreenDriver:DisplayObjectDriver = inViewOf(ShellContextView).getA(LoginPanel);
 	var loginScreen:DisplayObject = loginScreenDriver.view;
 	assertTrue('LoginPanel is off screen', (loginScreen.y < (-loginScreen.height)));
 
-In TestCase Examples:
+
+# TestCase Examples:
 
 To use RobotEyes you need to grab an instance of it and tell it which class to use to start up your application.
 You probably don't want to start your tests instantly - give the app a little room to breathe if it has async startup stuff.
