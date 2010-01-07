@@ -109,6 +109,9 @@ package com.newloop.roboteyes.core {
 				return new DisplayObjectDriverList(matchingInstancesArray);
 			}
 			
+			var e:Error = new Error("RobotEyes couldn't find a " + uiClazz + " inside " + useViewRoot.toString());
+			throw(e);
+			
 			return null;
 		}
 
@@ -120,6 +123,10 @@ package com.newloop.roboteyes.core {
 			if(foundView){
 				return new DisplayObjectDriver(foundView);
 			}
+			
+			var e:Error = new Error("RobotEyes couldn't find a " + viewClazz + " inside " + useViewRoot.toString());
+			throw(e);
+			
 			return null;
 		} 
 		

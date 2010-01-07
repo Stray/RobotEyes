@@ -122,7 +122,7 @@ In an end-to-end test you'll probably need to test some stuff asynchronously, an
     
 ## What if I ask for something that doesn't exist?
 
-RobotEyes returns currently returns null whenever it can't find something. This will almost certainly then cause your test to throw a null pointer error. I'm planning to add a more helpful error along the lines of 'RobotEyes can't find a WidgetView inside the SpiffingSectionView'.
+RobotEyes generally currently returns null whenever it can't find something. This will almost certainly then cause your test to throw a null pointer error, so first it will throw an Error with message: 'RobotEyes can't find an instance of [Class:WidgetView] inside [Object:SpiffingSectionView]'.
 
 ## Get in touch
 
