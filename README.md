@@ -26,7 +26,7 @@ The idea is that you set your tests up to use RobotEyes as the user: both to vis
 
 If your test requires a TextField nested within a certain view you can grab a driver for that view using:
 
-	var textDriver:TextFieldDriver = inViewOf(ShellContextView).inViewOf(LoginPanel).getA(TextField).named("username_txt");
+	var textDriver:TextFieldDriver = inViewOf(LoginPanel).getA(TextField).named("username_txt");
 
 The TextFieldDriver provides some useful functions:
 
@@ -38,12 +38,15 @@ Then you can also use the TextFieldDriver.checkText('Blah') function in a test:
 	
 	assertTrue('TextField starts blank', (textDriver.(checkText(''))));
 
+If you want to be specific about the view containing the view you're hooking into - for example, if you have a view that recurs in your app you can nest 'inViewOf' - start at the outside and work inward:
+
+	var textDriver:TextFieldDriver = inViewOf(StatsReportScreen).inViewOf(DateTimeWidget).getA(TextField).named("weekdayAbbreviation_txt");
 
 ## You can also:
 
 ### Get an interactive object (in this case by specifying a property) and click it:
 
-	var buttonDriver:InteractiveObjectDriver = inViewOf(MainView).inViewOf(SubView).getA(Sprite).withProperty('name', 'btn_login');
+	var buttonDriver:InteractiveObjectDriver = inViewOf(InterestingView).getA(Sprite).withProperty('name', 'btn_login');
 	buttonDriver.click();
 
 This will dispatch a MouseEvent.CLICK from the button / sprite / whatever you specified.
