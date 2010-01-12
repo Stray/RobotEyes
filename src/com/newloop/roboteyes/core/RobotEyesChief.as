@@ -10,6 +10,7 @@ package com.newloop.roboteyes.core {
 	import com.newloop.roboteyes.drivers.DisplayObjectDriverList;
 	import com.newloop.roboteyes.drivers.TextFieldDriver;
 	import com.newloop.roboteyes.drivers.InteractiveObjectDriver;
+	import com.newloop.roboteyes.errors.RobotEyesError;
 	
 	import flash.text.TextField;
 	
@@ -38,7 +39,6 @@ package com.newloop.roboteyes.core {
 		 *	@Constructor
 		 */
 		public function RobotEyesChief(){
-			trace("initialising: RobotEyesChief ");
 			super();
 		}
 		
@@ -63,7 +63,6 @@ package com.newloop.roboteyes.core {
 		}
 		
 		public function getA(uiClazz:Class, useViewRoot:DisplayObjectContainer = null):DisplayObjectDriverList{
-		    trace("getA");
 			return findInstancesOf(uiClazz, useViewRoot);
 		}
 		
@@ -87,7 +86,6 @@ package com.newloop.roboteyes.core {
 		//--------------------------------------
         
 		private function findInstancesOf(uiClazz:Class, useViewRoot:DisplayObjectContainer = null):DisplayObjectDriverList{
-			trace("findInstancesOf " + uiClazz);
 			if(useViewRoot == null){
 				useViewRoot = _viewRoot;
 			}
@@ -97,10 +95,7 @@ package com.newloop.roboteyes.core {
 			var iLength:uint = useViewRoot.numChildren;
 			for (var i:uint = 0; i<iLength; i++){
 				var nextChild:DisplayObject = useViewRoot.getChildAt(i) as DisplayObject;
-				trace("nextChild = " + nextChild);
-				
 				if(nextChild is uiClazz){
-					trace("found matching instance of " + uiClazz);
 					matchingInstancesArray.push(nextChild);
 				}
 			}
@@ -109,7 +104,7 @@ package com.newloop.roboteyes.core {
 				return new DisplayObjectDriverList(matchingInstancesArray);
 			}
 			
-			var e:Error = new Error("RobotEyes couldn't find a " + uiClazz + " inside " + useViewRoot.toString());
+			var e:RobotEyesError = new RobotEyesError("RobotEyes couldn't find a " + uiClazz + " inside " + useViewRoot.toString());
 			throw(e);
 			
 			return null;
@@ -124,26 +119,20 @@ package com.newloop.roboteyes.core {
 				return new DisplayObjectDriver(foundView);
 			}
 			
-			var e:Error = new Error("RobotEyes couldn't find a " + viewClazz + " inside " + useViewRoot.toString());
+			var e:RobotEyesError = new RobotEyesError("RobotEyes couldn't find a " + viewClazz + " inside " + useViewRoot.toString());
 			throw(e);
 			
 			return null;
 		} 
 		
 		private function checkForViewClass(viewClazz:Class, viewToWalk:DisplayObjectContainer):DisplayObjectContainer{
-			trace("checkForViewClass");
 			if(viewToWalk is viewClazz){
-				trace("found required view class");
 				return viewToWalk;
 			}
-			trace("viewToWalk: " + viewToWalk);
-			trace('viewToWalk.numChildren: ' + viewToWalk.numChildren);
-			
 			
 			var iLength:uint = viewToWalk.numChildren;
 			for (var i:uint = 0; i<iLength; i++){
 				var nextChild:DisplayObjectContainer = viewToWalk.getChildAt(i) as DisplayObjectContainer;
-				trace("nextChild = " + nextChild);
 				if(nextChild!=null){
 					var walkResults:DisplayObjectContainer = checkForViewClass(viewClazz, nextChild);
 					if(walkResults!=null){

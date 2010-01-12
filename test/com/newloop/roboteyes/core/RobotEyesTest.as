@@ -3,6 +3,12 @@ package com.newloop.roboteyes.core {
 	import asunit.framework.TestCase;
 	
 	import robotEyesDemoApp;
+	
+	import com.newloop.roboteyesdemoapp.TestTextView;
+	
+	import flash.display.SimpleButton;
+	
+	import com.newloop.roboteyes.errors.RobotEyesError;
 	                       
 	public class RobotEyesTest extends TestCase {
 		private var robotEyes:RobotEyes;
@@ -28,5 +34,12 @@ package com.newloop.roboteyes.core {
 		public function testFailure():void {
 			assertTrue("Failing test", true);
 		}
+		
+		/*public function testChucksAnErrorWhenViewNotFound():void{
+		    trace("testChucksAnErrorWhenViewNotFound");
+			assertThrows(RobotEyesError, function():void{
+				var viewDriver:DisplayObjectDriver = inViewOf(TestTextView).getA(SimpleButton);
+			});
+		} */
 	}
 }

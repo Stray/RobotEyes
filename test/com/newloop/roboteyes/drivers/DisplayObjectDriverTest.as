@@ -4,6 +4,8 @@ package com.newloop.roboteyes.drivers {
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	
+	import com.newloop.roboteyes.errors.RobotEyesError;
 
 	public class DisplayObjectDriverTest extends TestCase {
 		private var instance:DisplayObjectDriver;
@@ -32,6 +34,21 @@ package com.newloop.roboteyes.drivers {
 		public function testFailure():void {
 			assertTrue("Failing test", true);
 		}
+		
+		public function testCheckPropertyHasValueOfThrowsError():void {
+			assertThrows(RobotEyesError, function():void{
+				instance.checkPropertyHasValueOf("text", "hi");
+			})
+		}
+		
+		public function testCheckPropertyHasValueOfPassesCorrectly():void{
+			assertTrue("checkPropertyHasValueOf passes correctly", (instance.checkPropertyHasValueOf("alpha", 1)));
+		}
+		
+		public function testCheckPropertyHasValueOfFailsCorrectly():void{
+			assertFalse("checkPropertyHasValueOf fails correctly", (instance.checkPropertyHasValueOf("width", 10)));
+		}
+		                
 		
 	}
 }

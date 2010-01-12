@@ -6,6 +6,7 @@ package com.newloop.roboteyes.drivers {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import com.newloop.roboteyes.core.RobotEyesMaster;
+	import com.newloop.roboteyes.errors.RobotEyesError;
 	
 	/**
 	 *	Class description.
@@ -72,6 +73,21 @@ package com.newloop.roboteyes.drivers {
 			
 			return null;
 			
+		}
+		
+		public function checkPropertyHasValueOf(propertyName:String, value:*):Boolean{
+						
+			if(_view.hasOwnProperty(propertyName)){
+				if(_view[propertyName] == value) {
+					return true;
+				}
+				return false;
+			}
+			// you're looking for something that doesn't exist...
+			var err:RobotEyesError = new RobotEyesError("RobotEyes couldn't find the property " + propertyName + " on " + _view );
+			throw(err);
+			
+			return false;
 		}
 
 		//--------------------------------------
