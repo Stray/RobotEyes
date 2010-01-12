@@ -32,7 +32,6 @@ package com.newloop.roboteyes.drivers {
 		 *	@Constructor
 		 */
 		public function InteractiveObjectDriver(uiItem:InteractiveObject){
-			trace("initialising: InteractiveObjectDriver ");
 			super(uiItem);
 			_item = uiItem;
 		}

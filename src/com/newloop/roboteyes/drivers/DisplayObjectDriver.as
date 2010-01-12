@@ -33,7 +33,6 @@ package com.newloop.roboteyes.drivers {
 		 *	@Constructor
 		 */
 		public function DisplayObjectDriver(view:DisplayObject){
-			trace("initialising: DisplayObjectDriver ");
 			_view = view;
 			super();
 		}

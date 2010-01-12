@@ -1,23 +1,24 @@
 /* AS3
 	Copyright 2010 Newloop.
 */
-package {
-	
+package com.newloop.roboteyesdemoapp {
+
 	import flash.display.Sprite;
-	
-	import com.newloop.roboteyesdemoapp.TestTextView;
-	import com.newloop.roboteyesdemoapp.RotatingShapesView;
+	import flash.events.Event;
+   	import flash.events.MouseEvent;
+    
+	import skins.roboteyesDemoAppSkin;
 	
 	/**
-	 *	Class description.
+	 *	Sprite sub class description.
 	 *
 	 *	@langversion ActionScript 3.0
 	 *	@playerversion Flash 9.0
 	 *
 	 *	@author Lindsey Fallow
-	 *	@since  10.01.2010
+	 *	@since  2010-01-12
 	 */
-	public class robotEyesDemoApp extends Sprite {
+	public class RotatingSquareView extends Sprite {
 		
 		//--------------------------------------
 		// CLASS CONSTANTS
@@ -30,8 +31,7 @@ package {
 		/**
 		 *	@Constructor
 		 */
-		public function robotEyesDemoApp(){
-			trace("initialising: robotEyesDemoApp ");
+		public function RotatingSquareView(){
 			super();
 			init();
 		}
@@ -40,6 +40,10 @@ package {
 		//  PRIVATE VARIABLES
 		//--------------------------------------
 		
+		private var mcSquare:Sprite;
+		
+		private var mcPentagon:Sprite;
+		
 		//--------------------------------------
 		//  GETTER/SETTERS
 		//--------------------------------------
@@ -47,7 +51,12 @@ package {
 		//--------------------------------------
 		//  PUBLIC METHODS
 		//--------------------------------------
-
+        
+		public function rotateShapes():void{
+			rotateSquare();
+			rotatePentagon();
+		}
+		
 		//--------------------------------------
 		//  EVENT HANDLERS
 		//--------------------------------------
@@ -55,18 +64,27 @@ package {
 		//--------------------------------------
 		//  PRIVATE & PROTECTED INSTANCE METHODS
 		//--------------------------------------
-        
-		private function init():void{
-			addChild(new TestTextView());
-			var shapesView:RotatingShapesView = new RotatingShapesView();
-			shapesView.x = 400;
-			shapesView.y = 100;
-			addChild(shapesView);
-		}
 
-		//--------------------------------------
-		//  UNIT TESTS
-		//--------------------------------------
+		/**
+		 *	Initialises this object instance.
+		 */
+		private function init() : void
+		{			
+			mcSquare = new roboteyesDemoAppSkin.SquareViewSkin();
+			mcSquare.alpha = 0.8;
+			addChild(mcSquare);
+			
+			mcPentagon = new roboteyesDemoAppSkin.PentagonViewSkin();
+			addChild(mcPentagon);
+		}
+		
+		private function rotateSquare():void{
+			mcSquare.rotation += 20;
+		}
+		
+		private function rotatePentagon():void{
+			mcPentagon.rotation -= 20;
+		}
 		
 	}
 	

@@ -32,7 +32,6 @@ package com.newloop.roboteyes.drivers {
 		 *	@Constructor
 		 */
 		public function DisplayObjectDriverList(matchingInstancesArray:Array){
-			trace("initialising: DisplayObjectDriverList ");
 			_matchingInstancesArray = matchingInstancesArray;
 			super(_matchingInstancesArray[0]);
 		}
@@ -50,7 +49,6 @@ package com.newloop.roboteyes.drivers {
 		//--------------------------------------
         
 		public function named(withName:String):DisplayObjectDriver{
-			trace("named: " + withName);
 			var iLength:uint = _matchingInstancesArray.length;
 			for (var i:uint = 0; i<iLength; i++){
 				var nextItem:DisplayObject = _matchingInstancesArray[i];
