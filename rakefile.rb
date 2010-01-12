@@ -6,11 +6,11 @@ sprout 'as3'
 ############################################
 # Configure your Project Model
 project_model :model do |m|
-  m.project_name            = 'roboteyes'
+  m.project_name            = 'roboteyesDemoApp'
   m.language                = 'as3'
   m.background_color        = '#FFFFFF'
-  m.width                   = 970
-  m.height                  = 550
+  m.width                   = 800
+  m.height                  = 600
   # m.use_fdb               = true
   # m.use_fcsh              = true
   # m.preprocessor          = 'cpp -D__DEBUG=false -P - - | tail -c +3'
