@@ -20,6 +20,10 @@ package com.newloop.roboteyes.core {
 			_testApplication = new applicationMainClazz() as DisplayObjectContainer;
 			addChild(_testApplication);
 			RobotEyesMaster.viewRoot = _testApplication;
+		}
+		
+		public function get testApplication():*{
+			return _testApplication;
 		} 
 	}
 }
