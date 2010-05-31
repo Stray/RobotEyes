@@ -34,7 +34,6 @@ package com.newloop.roboteyes.core {
 		 *	@Constructor
 		 */
 		public function RobotEyesMaster(){
-			trace("initialising: RobotEyesMaster ");
 			super();
 		}
 		
@@ -68,8 +67,16 @@ package com.newloop.roboteyes.core {
 			return _robotEyesChief.getA(uiClazz, viewRoot);
 		}
 		
+		public static function getAny(uiClazz:Class, viewRoot:DisplayObjectContainer = null):DisplayObjectDriver{
+			return _robotEyesChief.getAny(uiClazz, viewRoot);
+		}
+		
 		public static function createDriverFor(uiItem:DisplayObject):DisplayObjectDriver{
 			return _robotEyesChief.createDriverFor(uiItem);
+		}
+		
+		public static function countChildrenOfType(childClazz:Class, viewRoot:DisplayObjectContainer):uint{
+			return _robotEyesChief.countChildrenOfType(childClazz, viewRoot);
 		}
 
 		//--------------------------------------

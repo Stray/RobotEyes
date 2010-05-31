@@ -74,6 +74,17 @@ package com.newloop.roboteyes.drivers {
 			
 		}
 		
+		public function getAny(uiClazz:Class):DisplayObjectDriver{
+			
+			if(_view is DisplayObjectContainer){
+				return RobotEyesMaster.getAny(uiClazz, _view as DisplayObjectContainer);
+				
+			}
+			
+			return null;
+			
+		}
+		
 		public function checkPropertyHasValueOf(propertyName:String, value:*):Boolean{
 						
 			if(_view.hasOwnProperty(propertyName)){
@@ -87,6 +98,16 @@ package com.newloop.roboteyes.drivers {
 			throw(err);
 			
 			return false;
+		}
+		
+		public function countChildrenOfType(childClazz:Class):uint{
+			
+			if(_view is DisplayObjectContainer){
+				return RobotEyesMaster.countChildrenOfType(childClazz, _view as DisplayObjectContainer);
+				
+			}
+			
+			return 0;
 		}
 
 		//--------------------------------------

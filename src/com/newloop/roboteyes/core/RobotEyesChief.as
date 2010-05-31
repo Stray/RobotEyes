@@ -66,6 +66,10 @@ package com.newloop.roboteyes.core {
 			return findInstancesOf(uiClazz, useViewRoot);
 		}
 		
+		public function getAny(uiClazz:Class, useViewRoot:DisplayObjectContainer = null):DisplayObjectDriver{
+			return findAnyInstanceOf(uiClazz, useViewRoot);
+		}
+		
 		public function createDriverFor(uiItem:DisplayObject):DisplayObjectDriver{
 			if(uiItem is TextField){
 				return new TextFieldDriver(uiItem as TextField);
@@ -75,6 +79,10 @@ package com.newloop.roboteyes.core {
 				return new InteractiveObjectDriver(uiItem as InteractiveObject);
 			}
 			return new DisplayObjectDriver(uiItem);
+		}
+		
+		public function countChildrenOfType(childClazz:Class, useViewRoot:DisplayObjectContainer):uint {
+			return countChildInstancesOf(childClazz, useViewRoot);
 		}                                                 
 
 		//--------------------------------------
@@ -95,6 +103,7 @@ package com.newloop.roboteyes.core {
 			var iLength:uint = useViewRoot.numChildren;
 			for (var i:uint = 0; i<iLength; i++){
 				var nextChild:DisplayObject = useViewRoot.getChildAt(i) as DisplayObject;
+				
 				if(nextChild is uiClazz){
 					matchingInstancesArray.push(nextChild);
 				}
@@ -102,6 +111,43 @@ package com.newloop.roboteyes.core {
 			
 			if(matchingInstancesArray.length>0){
 				return new DisplayObjectDriverList(matchingInstancesArray);
+			}
+			
+			for(i=0; i<iLength; i++){
+				nextChild = useViewRoot.getChildAt(i) as DisplayObject;
+				
+				if(nextChild is DisplayObjectContainer){
+					try {
+						var grandChildResult:DisplayObjectDriverList = findInstancesOf(uiClazz, nextChild as DisplayObjectContainer);
+						if(grandChildResult != null)
+						{
+							return grandChildResult;
+						}
+					} catch(e:RobotEyesError) {
+						//
+					}
+					
+				}
+			}
+			
+			var e:RobotEyesError = new RobotEyesError("RobotEyes couldn't find a " + uiClazz + " inside " + useViewRoot.toString());
+			throw(e);
+			
+			return null;
+		}
+		
+		private function findAnyInstanceOf(uiClazz:Class, useViewRoot:DisplayObjectContainer = null):DisplayObjectDriver{
+			if(useViewRoot == null){
+				useViewRoot = _viewRoot;
+			}
+			
+			var iLength:uint = useViewRoot.numChildren;
+			for (var i:uint = 0; i<iLength; i++){
+				var nextChild:DisplayObject = useViewRoot.getChildAt(i) as DisplayObject;
+				
+				if(nextChild is uiClazz){
+					return createDriverFor(nextChild);
+				}
 			}
 			
 			var e:RobotEyesError = new RobotEyesError("RobotEyes couldn't find a " + uiClazz + " inside " + useViewRoot.toString());
@@ -129,7 +175,6 @@ package com.newloop.roboteyes.core {
 			if(viewToWalk is viewClazz){
 				return viewToWalk;
 			}
-			
 			var iLength:uint = viewToWalk.numChildren;
 			for (var i:uint = 0; i<iLength; i++){
 				var nextChild:DisplayObjectContainer = viewToWalk.getChildAt(i) as DisplayObjectContainer;
@@ -141,6 +186,28 @@ package com.newloop.roboteyes.core {
 				}
 			}
 			return null;
+		}
+		
+		private function countChildInstancesOf(childClazz:Class, useViewRoot:DisplayObjectContainer):uint
+		{
+			var typeCounter:uint = 0;
+			
+			var iLength:uint = useViewRoot.numChildren;
+			for (var i:int = 0; i < iLength; i++)
+			{
+			    var nextChild:DisplayObject = useViewRoot.getChildAt(i) as DisplayObject;
+				if(nextChild is childClazz)
+				{
+					typeCounter++;
+				}
+				else if (nextChild is DisplayObjectContainer)
+				{
+					typeCounter += countChildInstancesOf(childClazz, nextChild as DisplayObjectContainer);
+				}
+				
+			}
+			
+			return typeCounter;
 		}
 
 		//--------------------------------------
