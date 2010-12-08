@@ -66,6 +66,10 @@ List of helpers for the InteractiveObjectDriver:
 	var loginScreen:DisplayObject = loginScreenDriver.view;
 	assertTrue('LoginPanel is off screen', (loginScreen.y < (-loginScreen.height)));
 
+### Count instances of a specific type - for example to check that the correct number of instances have been added to a list
+
+        var listHolderDriver:DisplayObjectDriver = inViewOf(SomeApp).getA(ListHolder);
+        assertEquals('Correct number of items added to the list', 8, listHolderDriver.countInstancesOf(ListItem));
 
 ### TestCase Examples:
 
