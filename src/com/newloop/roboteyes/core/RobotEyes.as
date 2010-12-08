@@ -24,6 +24,7 @@ package com.newloop.roboteyes.core {
 		
 		public function get testApplication():*{
 			return _testApplication;
-		} 
+		}
+		
 	}
 }

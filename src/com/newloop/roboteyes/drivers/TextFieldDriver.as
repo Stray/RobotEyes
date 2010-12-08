@@ -32,6 +32,10 @@ package com.newloop.roboteyes.drivers {
 			return _textField.text == testText;
 		}
 		
+		public function getText():String {
+			return _textField.text;
+		}
+		
 		public function textIs(testText:String):Boolean{
 			return checkText(testText);
 		}

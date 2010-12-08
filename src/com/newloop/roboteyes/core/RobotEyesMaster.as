@@ -71,6 +71,10 @@ package com.newloop.roboteyes.core {
 			return _robotEyesChief.getAny(uiClazz, viewRoot);
 		}
 		
+		public static function getSome(uiClazz:Class, viewRoot:DisplayObjectContainer = null):DisplayObjectDriverList{
+			return _robotEyesChief.getSome(uiClazz, viewRoot);
+		}
+		
 		public static function createDriverFor(uiItem:DisplayObject):DisplayObjectDriver{
 			return _robotEyesChief.createDriverFor(uiItem);
 		}

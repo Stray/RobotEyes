@@ -74,6 +74,17 @@ package com.newloop.roboteyes.drivers {
 			
 		}
 		
+		public function getSome(uiClazz:Class):DisplayObjectDriverList{
+			
+			if(_view is DisplayObjectContainer){
+				return RobotEyesMaster.getSome(uiClazz, _view as DisplayObjectContainer);
+				
+			}
+			
+			return null;
+			
+		}
+		
 		public function getAny(uiClazz:Class):DisplayObjectDriver{
 			
 			if(_view is DisplayObjectContainer){

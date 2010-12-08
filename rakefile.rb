@@ -6,7 +6,7 @@ sprout 'as3'
 ############################################
 # Configure your Project Model
 project_model :model do |m|
-  m.project_name            = 'roboteyesDemoApp'
+  m.project_name            = 'robotEyesDemoApp'
   m.language                = 'as3'
   m.background_color        = '#FFFFFF'
   m.width                   = 800
@@ -41,7 +41,18 @@ desc 'Create documentation'
 document :doc
 
 desc 'Compile a SWC file'
-swc :swc
+swc :swc do |t|
+  t.include_classes = "com.newloop.roboteyes.getA"
+  t.include_classes << " com.newloop.roboteyes.inViewOf"
+  t.include_classes << " com.newloop.roboteyes.core.RobotEyes"
+  t.include_classes << " com.newloop.roboteyes.core.RobotEyesChief"
+  t.include_classes << " com.newloop.roboteyes.core.RobotEyesMaster"
+  t.include_classes << " com.newloop.roboteyes.drivers.DisplayObjectDriver"
+  t.include_classes << " com.newloop.roboteyes.drivers.DisplayObjectDriverList"
+  t.include_classes << " com.newloop.roboteyes.drivers.InteractiveObjectDriver"
+  t.include_classes << " com.newloop.roboteyes.drivers.TextFieldDriver"
+  t.include_classes << " com.newloop.roboteyes.errors.RobotEyesError"  
+end
 
 desc 'Compile and run the test harness for CI'
 ci :cruise

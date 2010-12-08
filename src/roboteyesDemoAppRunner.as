@@ -1,9 +1,9 @@
 package {
 	import asunit.textui.TestRunner;
 	
-	public class roboteyesDemoAppRunner extends TestRunner {
+	public class robotEyesDemoAppRunner extends TestRunner {
 
-		public function roboteyesDemoAppRunner() {
+		public function robotEyesDemoAppRunner() {
 			// start(clazz:Class, methodName:String, showTrace:Boolean)
 			// NOTE: sending a particular class and method name will
 			// execute setUp(), the method and NOT tearDown.

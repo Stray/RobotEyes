@@ -74,6 +74,23 @@ package com.newloop.roboteyes.drivers {
 			
 			return null;
 		}
+		
+		public function countInstancesWithProperty(propName:String, propValue:*):uint{
+			var matchCount:uint = 0;
+			
+			var iLength:uint = _matchingInstancesArray.length;
+			for (var i:uint = 0; i<iLength; i++){
+				var nextItem:DisplayObject = _matchingInstancesArray[i];
+				if(nextItem.hasOwnProperty(propName)){
+					if(nextItem[propName]==propValue){
+						matchCount++;
+					}
+				}
+			}
+			
+			return matchCount;
+			
+		}
 
 		//--------------------------------------
 		//  EVENT HANDLERS
